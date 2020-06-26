@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block body%}
+<h1>새로운 방문자</h1>
+
+{% endblock %}
+
+{% block css %}
+
+<form action="" method="POST">
+
+    {% csrf_token %}
+
+    <div class="form-group">
+      <label for="name">{{ form.name }}</label>
+    </div>
+    <div class="form-group">
+      <label for="number">{{ form.number }}</label>
+    </div>
+    <div class="form-group">
+        <label for="number2">{{ form.number2 }}</label>
+      </div>
+    <button type="submit" class="btn btn-primary">완료</button>
+  </form>
+
+
+{% endblock %}
+
+
+
+
+
+<!-- <form action="" method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="완료">
+    
+</form> -->
+
+
+

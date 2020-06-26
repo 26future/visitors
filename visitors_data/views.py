@@ -13,19 +13,7 @@ def home(request):
     }
     return render(request, 'visitors_data/home.html', context)
 
-# def create(request):
-#     if request.method == 'POST':
-#         form = ArticleForm(request.POST)
-#         if form.is_valid():
-#             form.save()
-#     else:
-#         form = ArticleForm()
-#     context = {
-#         'form': form,
-#     }
-#     return render(request, 'articles/form.html', context)
-
-def citizen(request): # POST
+def new(request): # POST
     if request.method == 'POST':
         form = VisitorForm(request.POST)
         if form.is_valid():
@@ -37,11 +25,11 @@ def citizen(request): # POST
     context = {
         'form': form,
     }
-    return render(request, 'visitors_data/citizen.html', context)
+    return render(request, 'visitors_data/new.html', context)
 
 ## https://docs.djangoproject.com/en/3.0/ref/contrib/messages/    => error message custom
 
-def foreigner(request): # POST
+def new_en(request): # POST
     # if request.method == 'POST':
     #     name = request.POST.get('name')
     #     number = request.POST.get('number')
@@ -55,7 +43,7 @@ def foreigner(request): # POST
     context = {
 
     }
-    return render(request, 'visitors_data/foreigner.html', context)
+    return render(request, 'visitors_data/new_en.html', context)
 
 def confirm(request, pk):
     visitor = Visitor.objects.get(pk=pk)
@@ -78,53 +66,60 @@ def qr(request, pk):
 
     return render(request, 'visitors_data/qr.html')
 
-def read_qr(request):
 
-    img = cv2.imread('./static/images/qrcode.png')
-    detector = cv2.QRCodeDetector()
-    data, bbox, straight_qrcode = detector.detectAndDecode(img)
+# def read_qr(request):
+
+#     img = cv2.imread('./static/images/qrcode.png')
+#     detector = cv2.QRCodeDetector()
+#     data, bbox, straight_qrcode = detector.detectAndDecode(img)
 
     
-    # video
+#     # video
 
-    # import cv2
-    # # initalize the cam
-    # cap = cv2.VideoCapture(0)
-    # # initialize the cv2 QRCode detector
-    # detector = cv2.QRCodeDetector()
-    # while True:
-    #     _, img = cap.read()
-    #     # detect and decode
-    #     data, bbox, _ = detector.detectAndDecode(img)
-    #     # check if there is a QRCode in the image
-    #     if bbox is not None:
-    #         # display the image with lines
-    #         for i in range(len(bbox)):
-    #             # draw all lines
-    #             cv2.line(img, tuple(bbox[i][0]), tuple(bbox[(i+1) % len(bbox)][0]), color=(255, 0, 0), thickness=2)
-    #         if data:
-    #             print("[+] QR Code detected, data:", data)
-    #     # display the result
-    #     cv2.imshow("img", img)    
-    #     if cv2.waitKey(1) == ord("q"):
-    #         break
-    # cap.release()
-    # cv2.destroyAllWindows()
+#     # initalize the cam
+#     cap = cv2.VideoCapture(0)
+#     # initialize the cv2 QRCode detector
+#     detector = cv2.QRCodeDetector()
+#     while True:
+#         _, img = cap.read()
+#         # detect and decode
+#         data, bbox, _ = detector.detectAndDecode(img)
+#         # check if there is a QRCode in the image
+#         if bbox is not None:
+#             # display the image with lines
+#             for i in range(len(bbox)):
+#                 # draw all lines
+#                 cv2.line(img, tuple(bbox[i][0]), tuple(bbox[(i+1) % len(bbox)][0]), color=(255, 0, 0), thickness=2)
+#             if data:
+#                 print("[+] QR Code detected, data:", data)
+#                 cap.release()
+#                 cv2.destroyAllWindows()
+#         # display the result
+#         cv2.imshow("img", img)    
+#         if cv2.waitKey(1) == ord("q"):
+#             break
 
-    # PK 추출
-    p = re.compile("P+K+[:]+[0-9]+")
-    pk_number = p.findall(data)[0]
 
-    p1 = re.compile("[0-9]+")
-    current_pk = p1.findall(pk_number)[0]
+#     # PK 추출
+#     p = re.compile("P+K+[:]+[0-9]+")
+#     pk_number = p.findall(data)[0]
 
-    # DB 수정 (check='TRUE')
-    visitor = Visitor.objects.get(pk=current_pk)
-    visitor.check = "TRUE"
-    visitor.save()
+#     p1 = re.compile("[0-9]+")
+#     current_pk = p1.findall(pk_number)[0]
 
-    context = {
+#     # DB 수정 (check='TRUE')
+#     visitor = Visitor.objects.get(pk=current_pk)
+#     visitor.check = "TRUE"
+#     visitor.save()
 
-    }
-    return render(request, 'visitors_data/read_qr.html', context)
+#     context = {
+
+#     }
+#     return render(request, 'visitors_data/read_qr.html', context)
+
+#  def read_qr(request):
+#     context = {
+
+#     }
+#     return render(request, 'visitors_data/read_qr.html', context)
 

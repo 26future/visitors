@@ -12,5 +12,7 @@ urlpatterns = [
     path('qr/<int:pk>/', views.qr, name='qr'),
     # path('qr_en/<int:pk>/', views.qr_en, name='qr_en'),
     # path('read_qr/', views.read_qr, name='read_qr'),
+    # path('check_visitor/', views.check_visitor, name='check_visitor'),
+
 
 ]

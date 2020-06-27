@@ -4,6 +4,8 @@ import qrcode
 from .forms import VisitorForm
 import cv2
 import re
+# from IPython import embed
+from django.http import JsonResponse
 
 # Create your views here.
 
@@ -69,57 +71,33 @@ def qr(request, pk):
 
 # def read_qr(request):
 
-#     img = cv2.imread('./static/images/qrcode.png')
-#     detector = cv2.QRCodeDetector()
-#     data, bbox, straight_qrcode = detector.detectAndDecode(img)
+#     context = {
 
-    
-#     # video
-
-#     # initalize the cam
-#     cap = cv2.VideoCapture(0)
-#     # initialize the cv2 QRCode detector
-#     detector = cv2.QRCodeDetector()
-#     while True:
-#         _, img = cap.read()
-#         # detect and decode
-#         data, bbox, _ = detector.detectAndDecode(img)
-#         # check if there is a QRCode in the image
-#         if bbox is not None:
-#             # display the image with lines
-#             for i in range(len(bbox)):
-#                 # draw all lines
-#                 cv2.line(img, tuple(bbox[i][0]), tuple(bbox[(i+1) % len(bbox)][0]), color=(255, 0, 0), thickness=2)
-#             if data:
-#                 print("[+] QR Code detected, data:", data)
-#                 cap.release()
-#                 cv2.destroyAllWindows()
-#         # display the result
-#         cv2.imshow("img", img)    
-#         if cv2.waitKey(1) == ord("q"):
-#             break
+#     }
+#     return render(request, 'visitors_data/read_qr.html',context)
 
 
-#     # PK 추출
+
+
+# def check_visitor(request):
+#     personal_info = request.POST.get('content')
+
 #     p = re.compile("P+K+[:]+[0-9]+")
-#     pk_number = p.findall(data)[0]
-
-#     p1 = re.compile("[0-9]+")
-#     current_pk = p1.findall(pk_number)[0]
-
-#     # DB 수정 (check='TRUE')
-#     visitor = Visitor.objects.get(pk=current_pk)
+#     pk_number = int(p.findall(personal_info)[0][3:])
+    
+#     visitor = Visitor.objects.get(pk=pk_number)
 #     visitor.check = "TRUE"
-#     visitor.save()
+    
+#     if visitor.check == "FALSE":
+#         print('신규 방문자')
+#         visitor.check = "TRUE"
+#         visitor.save()
+#     # 재방문자
+#     else:
+#         print('재방문자')
+#         visitor.save()
 
 #     context = {
-
+#         'context': context
 #     }
-#     return render(request, 'visitors_data/read_qr.html', context)
-
-#  def read_qr(request):
-#     context = {
-
-#     }
-#     return render(request, 'visitors_data/read_qr.html', context)
-
+#     return render(request, 'visitors_data/result.html', context)

@@ -11,6 +11,8 @@ class Visitor(models.Model):
     date = models.DateTimeField(auto_now_add=True)
     check = models.CharField(max_length=10, default='FALSE')
     image = models.FileField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
     
 
 

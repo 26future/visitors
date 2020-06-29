@@ -216,3 +216,23 @@ pyvenv.cfg
 pip-selfcheck.json
 
 # End of https://www.toptal.com/developers/gitignore/api/venv,python,django
+
+
+# Python.gitignore
+# ...
+
+# VS Code
+.vscode
+
+# Django Media
+media/
+
+# Django Static
+staticfiles/
+
+# tmp & log
+tmp/
+log/
+
+# OS
+Thumbs.db

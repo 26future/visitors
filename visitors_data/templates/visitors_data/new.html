@@ -1,39 +1,72 @@
 {% extends 'base.html' %}
 
-{% block body%}
-<h1>새로운 방문자</h1>
-
-{% endblock %}
-
 {% block css %}
 
-  <form method="POST" class="post-form">
-    {% csrf_token %}
-      {% for field in form %}
-      <div class="form-group">
-      <label class="control-label" for="id_{{ field.name }}">{{ field.label }}</label>
-
-          {{ field }}
-      </div>
-      {% endfor %}
-      <input type="submit" value="완료">
-  </form>
-
 {% endblock %}
 
 
+{% block body%}
 
 
 
+<div class="p-3 mb-2 bg-dark text-white" >
+  <h1 class="text-center mt-5">새로운 방문자</h1>
+  <div class="container">
+  
 
-
-
-<!-- <form action="" method="POST">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="완료">
     
-</form> -->
+    <form method="POST" class="border border-light p-5">
+      {% csrf_token %}
+        {% for field in form %}
+        <div class="form-group">
+        <label class="control-label" for="id_{{ field.name }}">{{ field.label }}</label>
 
+            {{ field }}
+        </div>
+        {% endfor %}
+        <div class="p-0.8 mb-2 bg-info text-white">
+        <input class="btn btn-info btn-block" type="submit" value="완료"></div>
+    </form>
+  </div>
+</div>
+
+
+
+<div class="contact-form col-md-6 wow fadeInUp" data-wow-duration="500ms" data-wow-delay="300ms" style="visibility: visible; animation-duration: 500ms; animation-delay: 300ms; animation-name: fadeInUp;">
+				<form id="contact-form" method="post" action="sendmail.php" role="form">
+				
+					<div class="form-group">
+						<input type="text" placeholder="Your Name" class="form-control" name="name" id="name">
+					</div>
+					
+					<div class="form-group">
+						<input type="email" placeholder="Your Email" class="form-control" name="email" id="email">
+					</div>
+					
+					<div class="form-group">
+						<input type="text" placeholder="Subject" class="form-control" name="subject" id="subject">
+					</div>
+					
+					<div class="form-group">
+						<textarea rows="6" placeholder="Message" class="form-control" name="message" id="message"></textarea>	
+					</div>
+					
+					<div id="mail-success" class="success">
+						Thank you. The Mailman is on His Way :)
+					</div>
+					
+					<div id="mail-fail" class="error">
+						Sorry, don't know what happened. Try later :(
+					</div>
+					
+					<div id="cf-submit">
+						<input type="submit" id="contact-submit" class="btn btn-transparent" value="Submit">
+					</div>						
+					
+				</form>
+			</div>
+
+
+{% endblock%}
 
 

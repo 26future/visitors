@@ -2,11 +2,21 @@
 
 {% load static %}
 
+{% block css %}
+{% endblock %}
+
+
 {% block body %}
 
-<h1>QR코드 생성 완료</h1>
+<div class="p-3 mb-2 bg-dark text-white">
+    <div class="jumbotron bg-dark">
 
-<img src="{% static 'images/qrcode.png' %}" alt="qrcode">
+    <h1>QR코드 생성 완료</h1>
+
+    <img src="{% static 'images/qrcode.png' %}" alt="qrcode">
+
+</div>
+</div>
 
 
 {% endblock %}

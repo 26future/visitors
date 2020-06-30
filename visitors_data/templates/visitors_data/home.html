@@ -13,6 +13,10 @@ h1 {
 div {
     font-family: 'Holtwood One SC', serif;
 }
+
+.header {
+    font-family: 'Black Han Sans', sans-serif;
+}
 </style>
 {% endblock %}
 
@@ -28,7 +32,7 @@ div {
         <p>It uses utility classes for typography and spacing to space content out within the larger container.</p> -->
         <div class="mx-auto" style="width: 200px;">
         <p class="text-white bg-dark">
-        <h1 class="display-5">Welcome</h1>
+        <h1 class="display-5 header">Welcome</h1>
         <!-- <button type="button"  >Light</button> -->
         <a class="btn btn-outline-light" href="{% url 'visitors_data:new' %}" role="button">한국어</a>
         <a class="btn btn-outline-light" href="{% url 'visitors_data:new_en' %}" role="button">English</a>
@@ -36,6 +40,7 @@ div {
       </div>
     </div>
     </div>
+
 
 <!-- <h1>Welcome</h1>
 

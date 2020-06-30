@@ -2,6 +2,29 @@
 
 {% block css %}
 
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Nanum+Myeongjo:wght@700&family=Noto+Serif+KR:wght@600&display=swap');
+  
+
+  h3 {
+  font-family: 'Nanum Myeongjo', serif;
+  }
+  
+  div {
+    font-family: 'Noto Serif KR', serif;
+  }
+
+
+  .btn:active {
+    transform: scale(0.98);
+    box-shadow: 3px 2px 22px 1px rgba(0, 0, 0, 0.24); 
+      
+  }
+
+
+  
+    </style>
+
 {% endblock %}
 
 
@@ -12,25 +35,28 @@
 
 
 
-<div class="p-3 mb-2 bg-dark text-white text-center mt-5">
+<!-- <div class="p-3 mb-2 bg-dark text-white text-center mt-5"> -->
     <!-- <div class="jumbotron bg-dark"> -->
-    <div class="background-color">
+    <!-- <div class="background-color"> -->
+
+
+<h3 class="text-center mb-5">입력 정보 확인</h3>
 
     
+<div class="card shadow p-3 mb-5 bg-white rounded" style="width: 17rem; height: 11rem; margin:0 auto;">
+    <h4 class="card-text; row h-100 justify-content-center align-items-center">이름: {{ visitor.name }}</h4>
+    <h4 class="card-text; row h-100 justify-content-center align-items-center">전화번호: {{ visitor.number }}</h4>
+    <p>등록 시각: {{ visitor.created_at }}</p>
+</div>
 
-    <ul class="list-unstyled">
-        <li><h4 class="justify-content:space-between">이름: {{ visitor.name }}</h4></li>
-        <li><h4>전화번호: {{ visitor.number }}</h4></li>
-    </ul>
-
-    
-    <a class="btn btn-secondary btn-sm btn-outline-light" href="{% url 'visitors_data:qr' visitor.pk %}">확인</a>
-    <a class="btn btn-outline-light" href="{% url 'visitors_data:new' %}">뒤로</a>
+    <a class="btn btn-dark bt-background white mt-0.5 ml-10" href="{% url 'visitors_data:new' %}">뒤로</a>
+    <a class="btn btn-dark bt-background white ml-10" href="{% url 'visitors_data:qr' visitor.pk %}">확인</a>
 
     </div>
 </div>
 </div>
 
+    
 
 
 

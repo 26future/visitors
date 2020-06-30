@@ -59,7 +59,7 @@ def confirm(request, pk):
 
 def qr(request, pk):
     visitor = Visitor.objects.get(pk=pk)
-    qr = qrcode.QRCode(version=2, error_correction=qrcode.constants.ERROR_CORRECT_H)
+    qr = qrcode.QRCode(version=2, box_size=5, error_correction=qrcode.constants.ERROR_CORRECT_H)
     info = visitor.name + '/' + visitor.number + '/' + 'PK:' + str(visitor.pk)
     qr.add_data(info)
     qr.make

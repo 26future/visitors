@@ -3,17 +3,27 @@
 {% load static %}
 
 {% block css %}
+
+<!-- <style>
+    @import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Nanum+Myeongjo:wght@700&family=Noto+Serif+KR:wght@600&display=swap');
+  
+  div {
+    font-family: 'Noto Serif KR', serif;
+  } -->
+  
 {% endblock %}
 
 
 {% block body %}
 
 <div class="p-3 mb-2 bg-dark text-white">
-    <div class="jumbotron bg-dark">
+    <div class="jumbotron bg-dark height:">
 
-    <h1>QR코드 생성 완료</h1>
+    <p class="text-center">QR코드 생성 완료</p>
+    <p class="text-center">추후 재사용을 원하시면 QR코드를 저장해주시기 바랍니다. </p>
 
-    <img src="{% static 'images/qrcode.png' %}" alt="qrcode">
+
+    <img class="rounded mx-auto d-block" src="{% static 'images/qrcode.png' %}" alt="qrcode">
 
 </div>
 </div>

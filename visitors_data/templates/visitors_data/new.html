@@ -2,69 +2,44 @@
 
 {% block css %}
 
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Nanum+Myeongjo:wght@700&family=Noto+Serif+KR:wght@600&display=swap');
+
+h3 {
+  font-family: 'Nanum Myeongjo', serif;
+  }
+
+div {
+  font-family: 'Noto Serif KR', serif;
+}
+
+  </style>
+
 {% endblock %}
+
 
 
 {% block body%}
 
 
 
-<div class="p-3 mb-2 bg-dark text-white" >
-  <h1 class="text-center mt-5">새로운 방문자</h1>
+  <h3 class="text-center mt-5">신규 방문자 등록</h3>
   <div class="container">
   
 
     
-    <form method="POST" class="border border-light p-5">
+    <form method="POST" class="border border-light p-5" style="width: 21rem; height: 11rem; margin:0 auto;">
       {% csrf_token %}
         {% for field in form %}
         <div class="form-group">
-        <label class="control-label" for="id_{{ field.name }}">{{ field.label }}</label>
+        <label class="control-label"  for="id_{{ field.name }}">{{ field.label }}</label>
 
             {{ field }}
         </div>
         {% endfor %}
-        <div class="p-0.8 mb-2 bg-info text-white">
-        <input class="btn btn-info btn-block" type="submit" value="완료"></div>
+        <input class="btn btn-block btn-dark mt-4"  type="submit" value="완료"></div>
+
     </form>
-  </div>
-</div>
-
-
-
-<div class="contact-form col-md-6 wow fadeInUp" data-wow-duration="500ms" data-wow-delay="300ms" style="visibility: visible; animation-duration: 500ms; animation-delay: 300ms; animation-name: fadeInUp;">
-				<form id="contact-form" method="post" action="sendmail.php" role="form">
-				
-					<div class="form-group">
-						<input type="text" placeholder="Your Name" class="form-control" name="name" id="name">
-					</div>
-					
-					<div class="form-group">
-						<input type="email" placeholder="Your Email" class="form-control" name="email" id="email">
-					</div>
-					
-					<div class="form-group">
-						<input type="text" placeholder="Subject" class="form-control" name="subject" id="subject">
-					</div>
-					
-					<div class="form-group">
-						<textarea rows="6" placeholder="Message" class="form-control" name="message" id="message"></textarea>	
-					</div>
-					
-					<div id="mail-success" class="success">
-						Thank you. The Mailman is on His Way :)
-					</div>
-					
-					<div id="mail-fail" class="error">
-						Sorry, don't know what happened. Try later :(
-					</div>
-					
-					<div id="cf-submit">
-						<input type="submit" id="contact-submit" class="btn btn-transparent" value="Submit">
-					</div>						
-					
-				</form>
-			</div>
 
 
 {% endblock%}

@@ -2,4 +2,6 @@
 
 {% block body %}
 <h1>QR Code 인식 완료</h1>
+<h2>{{ visitor.pk }}번, {{ visitor.name }}님 환영합니다.</h2>
+<p>고객님이 입력하신 핸드폰 번호는 <strong>{{ visitor.number }}</strong>입니다.</p>
 {% endblock %}

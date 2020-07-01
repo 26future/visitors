@@ -13,7 +13,7 @@ urlpatterns = [
     # path('qr_en/<int:pk>/', views.qr_en, name='qr_en'),
     path('read_qr/', views.read_qr, name='read_qr'),
     path('create_qr/', views.create_qr, name='create_qr'),
-    path('result/', views.result, name='result'),
+    path('result/<int:visitor_pk>/', views.result, name='result'),
     path('make_crop_image/', views.make_crop_image, name='make_crop_image'),
     path('get_crop_image/', views.get_crop_image, name='get_crop_image'),
 

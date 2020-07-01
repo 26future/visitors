@@ -18,27 +18,32 @@ document.addEventListener("DOMContentLoaded", event => {
   let scanner = new Instascan.Scanner({ video: document.getElementById('preview') });
     Instascan.Camera.getCameras()
       .then(cameras => {
-      scanner.camera = cameras[cameras.length - 1];
+        console.log(cameras)
+      scanner.camera = cameras[0];
       scanner.start();
     })
       .catch(e => console.error(e));
 
   
   scanner.addListener('scan', content => {
+    console.log(content)
+    const pkNumber = content.slice(19, 22)
+    // console.log(content.length)
     const requestForm = new FormData()
     requestForm.append('content', content)
 
     axios.defaults.xsrfCookieName = 'csrftoken'
     axios.defaults.xsrfHeaderName = 'X-CSRFToken'
-    axios.post('https://4f1aae4c4b06.ngrok.io/visitors/create_qr/', requestForm)
+
+    axios.post('https://a0c208cd3ea0.ngrok.io/visitors/create_qr/', requestForm)
       .then(res => {
         console.log(res)
+        window.location.replace(`http://127.0.0.1:8000/visitors/result/${pkNumber}/`);
       })
       .catch(err => {
         console.error(err)
       })
   });
-
 });
   
 </script>

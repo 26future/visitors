@@ -5,6 +5,8 @@ from .forms import VisitorForm
 import cv2
 import re
 from django.http import JsonResponse
+import os
+from PIL import Image
 # from IPython import embed
 
 
@@ -133,7 +135,11 @@ def get_crop_image(request):
                 tmp.append(cnt)
         file_name = most_recent_file[tmp[-1]:]
         print(file_name)
+        area = (190,113,440,370)
+        im = im.crop(area)
+        im = im.resize((224,224))
         im.save('./static/images/'+file_name)
+        # os.remove(most_recent_file)
         # im.save('')
         # # 이미지 png로 저장
         # im.save('../tmp/tmp.png')

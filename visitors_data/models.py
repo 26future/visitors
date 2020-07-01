@@ -16,12 +16,12 @@ class Visitor(models.Model):
     
 
 
-# def number_validator(self):
-#     number = self.number
-#     number2 = self.number2
-    
-#     if number != number2:
-#         msg = '전화번호를 다시 확인해주세요'
-#         raise ValidationError(msg)
+    def number_validator(self):
+        number = self.number
+        number2 = self.number2
+        
+        if number != number2:
+            msg = '전화번호를 다시 확인해주세요'
+            raise ValidationError(msg)
         
         

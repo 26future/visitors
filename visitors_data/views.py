@@ -69,35 +69,68 @@ def qr(request, pk):
     return render(request, 'visitors_data/qr.html')
 
 
-# def read_qr(request):
+def read_qr(request):
 
-#     context = {
+    context = {
 
-#     }
-#     return render(request, 'visitors_data/read_qr.html',context)
-
-
+    }
+    return render(request, 'visitors_data/read_qr.html',context)
 
 
-# def check_visitor(request):
-#     personal_info = request.POST.get('content')
 
-#     p = re.compile("P+K+[:]+[0-9]+")
-#     pk_number = int(p.findall(personal_info)[0][3:])
+
+def create_qr(request):
+    personal_info = request.POST.get('content')
+
+    p = re.compile("P+K+[:]+[0-9]+")
+    pk_number = int(p.findall(personal_info)[0][3:])
     
-#     visitor = Visitor.objects.get(pk=pk_number)
-#     visitor.check = "TRUE"
+    visitor = Visitor.objects.get(pk=pk_number)
+    visitor.check = "TRUE"
     
-#     if visitor.check == "FALSE":
-#         print('신규 방문자')
-#         visitor.check = "TRUE"
-#         visitor.save()
-#     # 재방문자
-#     else:
-#         print('재방문자')
-#         visitor.save()
+    if visitor.check == "FALSE":
+        print('신규 방문자')
+        visitor.check = "TRUE"
+        visitor.save()
+    # 재방문자
+    else:
+        print('재방문자')
+        visitor.save()
 
-#     context = {
-#         'context': context
-#     }
-#     return render(request, 'visitors_data/result.html', context)
+    # context = {
+    #     'context': context
+    # }
+    return redirect('visitors_data:result')
+
+
+def result(request):
+    return render(request, 'visitors_data/make_crop_image.html')
+
+
+def make_crop_image(request):
+    return render(request, 'visitors_data/make_crop_image.html')
+
+
+def get_crop_image(request):
+    crop_image = request.POST.get('image')
+    # # embed()
+    # # print(crop_image)
+
+
+    # url = 'crop_image'
+
+    # response = requests.get(url)
+
+    # soup = bs4.BeautifulSoup(response.text, 'html.parser')
+
+    # image = soup.find('img')
+    # image_url = image['src']
+
+
+    # img = Image.open(requests.get(image_url, stream = True).raw)
+
+    # img.save('test_image.jpg')
+
+
+
+    return redirect('visitors_data:home')

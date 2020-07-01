@@ -4,25 +4,21 @@
 
 {% block css %}
 <style>
-    @import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Montserrat:wght@500&family=Nanum+Myeongjo:wght@700&family=Noto+Serif+KR:wght@200;600&family=PT+Serif:wght@700&display=swap');
-    
-h1 {
-    font-family: 'PT Serif', serif;
-}
+    @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&family=Noto+Sans+KR:wght@300;400&display=swap');
 
 div {
-    font-family: 'Noto Serif KR', serif;
+    font-family: 'Nanum Gothic', sans-serif;
 }
 
-.header {
-    font-family: 'Black Han Sans', sans-serif;
+h1 {
+    font-family: 'Source Serif Pro', serif;
 }
+
 </style>
 {% endblock %}
 
 
 {% block body %}
-
 <div class="mx-auto" style="max-width: 100%;">
 
     <div class="p-3 mb-2 bg-dark text-white">
@@ -34,8 +30,10 @@ div {
         <p class="text-white bg-dark">
         <h1 class="display-5 header mb-1 text-center">Welcome</h1>
         <p class="text-center">QR코드 신규 발급 페이지입니다.</p>
-        <a class="btn btn-outline-light" href="{% url 'visitors_data:new' %}" role="button">한국어</a>
-        <a class="btn btn-outline-light" href="{% url 'visitors_data:new_en' %}" role="button">English</a>
+        <div class="d-flex justify-content-center">
+            <a class="btn btn-outline-light mr-1" href="{% url 'visitors_data:new' %}" role="button">한국어</a>
+            <a class="btn btn-outline-light" href="{% url 'visitors_data:new_en' %}" role="button">English</a>
+        </div>
       </div></p>
       </div>
     </div>

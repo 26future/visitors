@@ -228,6 +228,7 @@ pip-selfcheck.json
 media/
 
 # Django Static
+static/
 staticfiles/
 
 # tmp & log

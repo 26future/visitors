@@ -10,12 +10,10 @@ class Visitor(models.Model):
     number2 = models.CharField(max_length=11)
     date = models.DateTimeField(auto_now_add=True)
     check = models.CharField(max_length=10, default='FALSE')
-    image = models.FileField()
+    image = models.ImageField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     
-
-
     def number_validator(self):
         number = self.number
         number2 = self.number2

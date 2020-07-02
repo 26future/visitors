@@ -41,13 +41,16 @@ div {
   <div class="container">
     <form method="POST" class="border border-light p-5" style="width: 21rem; height: 11rem; margin:0 auto;" autocomplete="off">
       {% csrf_token %}
-        {% for field in form %}
-        <div class="form-group">
+
+      {% for field in form %}
+      <div class="form-group">
         <label class="control-label"  for="id_{{ field.name }}">{{ field.label }}</label>
-            {{ field }}
-        </div>
-        {% endfor %}
-        <input class="btn btn-block btn-dark mt-4"  type="submit" value="완료"></div>
+        {{ field }}
+        <p>{{ field.errors }}</p>
+      </div>
+      {% endfor %}
+      {{ form.non_field_errors }}
+      <input class="btn btn-block btn-dark mt-4"  type="submit" value="완료"></div>
     </form>
 {% endblock%}
 

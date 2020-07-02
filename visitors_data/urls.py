@@ -14,8 +14,8 @@ urlpatterns = [
     path('read_qr/', views.read_qr, name='read_qr'),
     path('create_qr/', views.create_qr, name='create_qr'),
     path('result/<int:visitor_pk>/', views.result, name='result'),
-    path('make_crop_image/', views.make_crop_image, name='make_crop_image'),
-    path('get_crop_image/', views.get_crop_image, name='get_crop_image'),
+    # path('make_crop_image/', views.make_crop_image, name='make_crop_image'),
+    path('get_crop_image/<int:pk>/', views.get_crop_image_2, name='get_crop_image'),
 
 
 ]

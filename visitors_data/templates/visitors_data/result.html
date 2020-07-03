@@ -99,7 +99,7 @@
         axios.post('http://127.0.0.1:8000/visitors/get_crop_image/{{ visitor.pk }}/', requestForm)
             .then(res => {
                 if (res.data.mask === 1) {
-                    window.location.replace("http://127.0.0.1:8000/visitors/home/");
+                    window.location.replace("http://127.0.0.1:8000/visitors/read_qr/");
                 } else {
                     alert(res.data.message)
                 }

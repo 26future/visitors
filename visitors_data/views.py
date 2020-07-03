@@ -25,6 +25,10 @@ import numpy as np
 import time
 from keras.models import load_model
 
+# voice import
+from io import BytesIO
+from playsound import playsound
+
 global graph, model
 
 graph = tf.get_default_graph()
@@ -229,6 +233,12 @@ def get_crop_image_2(request, pk):
     # print(model.summary())
 
     print("판독결과 : ", m)
+    
+    if m==1:
+        playsound('./on_mask.mp3')
+
+    else:
+        playsound('./off_mask.mp3')
 
     buffer = BytesIO()
     im.save(fp=buffer, format='PNG')

@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from .models import Visitor
 import qrcode
 from .forms import VisitorForm
-import cv2
+# import cv2
 import re
 from django.http import JsonResponse
 import os
@@ -33,7 +33,7 @@ global graph, model
 
 graph = tf.get_default_graph()
 
-model = load_model("./MaskCheckModel_Ver1.1.h5")
+model = load_model("./MaskCheckModel_Ver1.2.h5")
 
 def home(request):
     context = {
@@ -209,7 +209,7 @@ def get_crop_image_2(request, pk):
 
     file_name = f'{pk}.png'
 
-    path = f'{settings.MEDIA_ROOT}/face/'+file_name
+    path = f'{settings.MEDIA_ROOT}/'+file_name
     
     print("file_name : " + file_name)
 
@@ -225,7 +225,6 @@ def get_crop_image_2(request, pk):
     img = img/255
 
     with graph.as_default():
-        # model = load_model("./MaskCheckModel_Ver1.1.h5")
         preds = model.predict(img)
 
     m = np.argmax(preds)
@@ -233,12 +232,17 @@ def get_crop_image_2(request, pk):
     # print(model.summary())
 
     print("판독결과 : ", m)
-    
-    if m==1:
-        playsound('./on_mask.mp3')
 
-    else:
-        playsound('./off_mask.mp3')
+    # tmp_path='./static/media/'
+    # if m == 0:
+    #     playsound(path+"cs_732020_0_31_2_1.wav")
+    # elif m == 1:
+    #     playsound(path+"cs_732020_0_31_2_1.wav")
+    # elif m == 2:
+    #     playsound(path+"2.mp3")
+    # else:
+    #     playsound(path+"3.mp3")
+    
 
     buffer = BytesIO()
     im.save(fp=buffer, format='PNG')
@@ -262,6 +266,7 @@ def get_crop_image_2(request, pk):
         0: '마스크 미착용. 마스크를 착용하지 않으셨습니다.',
         1: '마스크 착용. 즐거운 시간 되십시오.',
         2: '마스크 인식 불가. 마스크를 제대로 착용해주세요.',
+        3: '얼굴 인식 불가. 초록색 네모칸 안에 얼굴을 다시 맞춰주세요.',
     }
     
     data = {

@@ -1,9 +1,7 @@
 from django.db import models
 from django.core.exceptions import ValidationError
-# from .validators import validate_number
 
 
-# Create your models here.
 class Visitor(models.Model):
     name = models.CharField(max_length=5)
     number = models.CharField(max_length=11)
@@ -13,7 +11,6 @@ class Visitor(models.Model):
     image = models.ImageField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    # agreement = models.BooleanField() 
     
     
     def number_validator(self):
@@ -23,13 +20,3 @@ class Visitor(models.Model):
         if number != number2:
             msg = '전화번호를 다시 확인해주세요'
             raise ValidationError(msg)
-    
-    # def agreement_validator(self):
-    #     agreement  = self.agreement
-
-    #     if agreement == False:
-    #         msg = '개인정보 제공에 동의해주세요'
-    #         raise ValidationError(msg)
-
-        
-        

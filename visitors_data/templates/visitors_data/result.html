@@ -3,58 +3,93 @@
 {% load static %}
 
 {% block css %}
-
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&family=Noto+Sans+KR:wght@300;400;500&family=Source+Serif+Pro:wght@600&display=swap');
- 
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&family=Noto+Sans+KR:wght@300;400;500&family=Source+Serif+Pro:wght@600&display=swap');
+@font-face { font-family: 'GmarketSansBold'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansBold.woff') format('woff'); font-weight: normal; font-style: normal; }
+@font-face { font-family: 'Bazzi'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/Bazzi.woff') format('woff'); font-weight: normal; font-style: normal; }
+@font-face { font-family: 'InfinitySans-RegularA1'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/InfinitySans-RegularA1.woff') format('woff'); font-weight: normal; font-style: normal; }
+h1 {
+    font-family: 'GmarketSansBold';
+}
 
-  h1 {
-    font-family: 'Noto Sans KR', sans-serif;
-  }
-  
-  h2 {
-    font-family: 'Noto Sans KR', sans-serif;
-  }
+h4 {
+    font-family: 'InfinitySans-RegularA1';    
+    /* letter-spacing: 1px; */
+    }
 
 
-  
-    </style>
+button, #message {
+    font-family: 'Bazzi';
+    font-size: 20px;
+    word-spacing: 4px;
+}
 
+button {
+    letter-spacing: 2px;
+}
+
+video{
+    transform: rotateY(180deg);
+    -webkit-transform: rotateY(180deg);
+    -moz-transform: rotateY(180deg);
+    border-radius: 5%;
+    box-shadow: 10px 10px 32px 0px rgba(73,73,74,1);
+}
+
+.test {
+    height: 5px;
+}
+
+#green-box {
+    float:right;
+        }
+
+video {
+    position:relative;
+    }
+
+</style>
 {% endblock %}
 
-
-
 {% block body %}
-<h1 class="text-center">QR코드 인식 완료</h1>
-<h4 class="text-center">{{ visitor.pk }}번, <strong>{{ visitor.name }}</strong>님 환영합니다.</h4>
-<!-- <h4 class="text-center">고객님이 입력하신 핸드폰 번호는 <strong>{{ visitor.number }}</strong>입니다.</h4> -->
-
+<div class="test"></div>
+<h4 class="text-center mt-5 mb-5"><strong>{{ visitor.name }}</strong>님 환영합니다<br>마스크 착용 후, 초록색 네모칸 안에 얼굴을 맞추고 촬영 버튼을 눌러주세요</h4>
 <div class="d-flex justify-content-center">
-<video></video>
-    <div style="position: relative; left:560px; top: -195px;">
-        <hr width =21% color="66FF33" align="left" size=5/>
-    </div>
-    <div style="position: relative; left:0px; top: -430px;" >
-        <hr width =21% color="66FF33" align="left" size=5/>
-    </div>
-    <div style="position: relative; left:0px; top: -13px;" >
-        <hr width = 3 color="66FF33" align="left" size=422/>   
-    </div>
-    <div style="position: relative; left:395px; top: -430px;" >
-        <hr width = 3 color="66FF33" align="left" size=422/>  
-    </div>
+    <video></video>
 </div>
 <div id="message" class="text-center mt-3">&nbsp;</div>
+
 <div class="d-flex justify-content-center mt-3">
     <button type="button" class="btn btn-dark bt-background white" id="snapshot">사진 촬영</button>
 </div>
-<hr>
+<!-- <div style="position: static; left:670px; top: -520px;"> -->
+<!-- <div style="align-middle"> -->
 
+<div class="d-flex justify-content-center align-middle" id="green_box">
+
+    <table border="5" bordercolor='66FF33'>
+        <td>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</br>
+            &nbsp;</br>
+            &nbsp;</br>
+            &nbsp;</br>
+            &nbsp;</br>
+            &nbsp;</br>
+            &nbsp;</br>
+            &nbsp;</br>
+            &nbsp;</br>
+            &nbsp;</br>
+            &nbsp;</br>
+            &nbsp;</br>
+            &nbsp;</br>
+        </td>
+     </table>
+</div>
+<hr>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script>
-
     const btn = document.getElementById('snapshot');
     const message = document.getElementById('message');
 
@@ -64,7 +99,7 @@
         .then(stream => {
             vid.srcObject = stream; // don't use createObjectURL(MediaStream)
             vid.width=720;
-            vid.height=480;
+            vid.height=540;
         return vid.play(); // returns a Promise
     })
         .then(() => { // enable the button
@@ -119,15 +154,8 @@
         a.click();
     }
 
-    // var audio = new Audio("{% static 'sounds/off_mask_gun.mp3' %}");
-    // audio.addEventListener("canplaythrough", event => {
-    //     audio.play();
-    // });
 
     function sendImage(dataUrl) {
-        // const blobImageUrl = URL.createObjectURL(blob)
-        // console.log(blobImageUrl)
-
         const requestForm = new FormData()
         requestForm.append('image', dataUrl)
 
@@ -139,16 +167,16 @@
                 message.innerHTML = res.data.message
 
                 if (res.data.mask === 1) {
-                    var audio = new Audio("{% static 'sounds/on_mask.mp3' %}");
+                    var audio = new Audio("{% static 'sounds/1_1.wav' %}");
                 } 
                 else if(res.data.mask === 0) {
-                    var audio = new Audio("{% static 'sounds/0.mp3' %}");
+                    var audio = new Audio("{% static 'sounds/0_0.wav' %}");
                 }
                 else if(res.data.mask === 2) {
-                    var audio = new Audio("{% static 'sounds/2.mp3' %}");
+                    var audio = new Audio("{% static 'sounds/2_2.wav' %}");
                 }
                 else if(res.data.mask === 3){
-                    var audio = new Audio("{% static 'sounds/3.mp3' %}");
+                    var audio = new Audio("{% static 'sounds/3_3.wav' %}");
                 }
 
                 audio.addEventListener("canplaythrough", event => {
@@ -156,7 +184,6 @@
                 });
 
                 audio.addEventListener('ended', (event) => {
-                    // alert(res.data.message)
                     if (res.data.mask == 1) {
                         window.location.replace("/visitors/read_qr/");
                     }
@@ -170,5 +197,4 @@
     }
 })
 </script>
-
 {% endblock %}

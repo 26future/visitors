@@ -3,62 +3,46 @@
 {% load static %}
 
 {% block css %}
-
 <style>
+@font-face { font-family: 'GmarketSansBold'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansBold.woff') format('woff'); font-weight: normal; font-style: normal; }
+@font-face { font-family: 'Bazzi'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/Bazzi.woff') format('woff'); font-weight: normal; font-style: normal; }
+
 h1 {
-  font-family: 'Nanum Gothic', sans-serif;
+  font-family: 'GmarketSansBold';
 }
 
 .site-qr {
   display: block;
 }
 
-/* img {
-  position: absolute;
-  top: 0;
-  bottom: 40;
-  left: 100;
-  right: 0;
-  margin: auto;
-} */
+.test {
+  font-family: 'Bazzi';
+}
 
-
-/* h4 {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left:  50;
-  right: 10;
-  margin: auto;
-} */
-/* 
-h4 {
-  letter-spacing: -10px;
-} */
-
+.test2 {
+  border-radius: 5%;
+  box-shadow: 11px 11px 42px 0px rgba(73,73,74,1);
+}
 </style>
 <script type="text/javascript" src="{% static 'instascan.min.js' %} "></script>
-  
 {% endblock %}
 
-{% block body %}
 
+{% block body %}
 <div class="container">
-  <h1 class="mb-5 text-center">QR코드 인식</h1>
-  <div class="row">
-    <video class="" id="preview"></video>
-    <div>
-      <div class="ml-5 text-center">
-        <img class="site-qr" src="{% static 'qr/site.png' %}"><br>
-        QR코드가 없으신 분은 여기로 접속하여<br>
-        QR코드를 생성해 주시기 바랍니다.
-      </div>
+  <h1 class="mt-5 mb-5 text-center">QR코드 인식 후 마스크 착용 여부 확인</h1>
+  <div class="row body-border">
+      <video class="test2 mt-4" id="preview"></video>
+      <h3>
+        <div class="ml-5 text-center test">
+          <img class="site-qr" src="{% static 'qr/site.png' %}"><br>
+          <strong> QR코드가 없으신 분은 여기로 접속하여<br>
+          QR코드를 생성해 주시기 바랍니다</strong>
+        </div>
+      </h3>
     </div>
-  </div>
-  
   <h4 class=""></h4>
 </div>
-
 
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script>
@@ -74,10 +58,7 @@ document.addEventListener("DOMContentLoaded", event => {
 
   
   scanner.addListener('scan', content => {
-    console.log(content)
-    // const pkNumber = content.slice(21, 23)
     const pkNumber = content.split(':')[1]
-    // console.log(content.length)
     const requestForm = new FormData()
     requestForm.append('content', content)
 

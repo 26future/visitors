@@ -12,7 +12,7 @@ h1 {
     font-family: 'GmarketSansBold';
 }
 
-h4 {
+h4, p {
     font-family: 'InfinitySans-RegularA1';    
     }
 
@@ -58,6 +58,7 @@ video{
 {% block body %}
 <div class="test"></div>
 <h4 class="text-center mt-5 mb-5"><strong>{{ visitor.name }}</strong>님 환영합니다<br>마스크 착용 후, 초록색 네모칸 안에 얼굴을 맞추고 촬영 버튼을 눌러주세요</h4>
+<p class="text-center">※ 저장된 사진은 2주간 보관 후 삭제될 예정이며, 코로나 관련 문제 발생시에만 열람됩니다</p>
 <div class="d-flex justify-content-center position-relative">
     <video></video>
     <div class="green-box"></div>
